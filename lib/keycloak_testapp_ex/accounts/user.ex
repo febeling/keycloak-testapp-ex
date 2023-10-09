@@ -15,6 +15,6 @@ defmodule KeycloakTestappEx.Accounts.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:name, :uid, :provider, :email])
-    |> validate_required([:name, :uid, :provider, :email])
+    |> validate_required([:name, :email])
   end
 end

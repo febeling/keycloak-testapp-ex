@@ -10,5 +10,7 @@ defmodule KeycloakTestappEx.Repo.Migrations.CreateUsers do
 
       timestamps()
     end
+
+    create index("users", [:email], unique: true)
   end
 end
