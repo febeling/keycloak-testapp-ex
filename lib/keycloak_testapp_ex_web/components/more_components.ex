@@ -2,16 +2,14 @@ defmodule KeycloakTestappExWeb.MoreComponents do
   use Phoenix.Component
   # alias Phoenix.LiveView.JS
 
-  attr :authenticated_user, :string
+  def user_signed_in?(assigns) do
+    assigns[:authenticated_user] != nil
+  end
+
+  attr :authenticated_user, :string, default: nil
   def authenticated_user(assigns) do
-    if assigns[:authenticated_user] != nil do
-      ~H"""
-      <div><%= @authenticated_user %></div>
-      """
-    else
-      ~H"""
-      <div>nicht angemeldet</div>
-      """
-    end
+    ~H"""
+    <div><%= @authenticated_user || "nicht angemeldet" %></div>
+    """
   end
 end
