@@ -4,6 +4,8 @@ defmodule KeycloakTestappExWeb.UserController do
   alias KeycloakTestappEx.Accounts
   alias KeycloakTestappEx.Accounts.User
 
+  plug KeycloakTestappExWeb.Plugs.Authenticate when action not in [:show, :index]
+
   def index(conn, _params) do
     users = Accounts.list_users()
     render(conn, :index, users: users)

@@ -8,6 +8,9 @@ defmodule KeycloakTestappExWeb.Router do
     plug :put_root_layout, html: {KeycloakTestappExWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+
+    plug KeycloakTestappExWeb.Plugs.Debug
+    plug KeycloakTestappExWeb.Plugs.SessionInfo
   end
 
   pipeline :api do
@@ -16,6 +19,9 @@ defmodule KeycloakTestappExWeb.Router do
 
   scope "/", KeycloakTestappExWeb do
     pipe_through :browser
+
+    post "/sign_in", SessionController, :create
+    delete "/sign_out", SessionController, :destroy
 
     get "/", PageController, :home
     resources "/posts", PostController

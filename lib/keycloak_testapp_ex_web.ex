@@ -85,6 +85,7 @@ defmodule KeycloakTestappExWeb do
       import Phoenix.HTML
       # Core UI components and translation
       import KeycloakTestappExWeb.CoreComponents
+      import KeycloakTestappExWeb.MoreComponents
       import KeycloakTestappExWeb.Gettext
 
       # Shortcut for generating JS commands
