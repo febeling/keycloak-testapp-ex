@@ -32,6 +32,7 @@ defmodule KeycloakTestappEx.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      # default
       {:phoenix, "~> 1.7.7"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.10"},
@@ -49,7 +50,9 @@ defmodule KeycloakTestappEx.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      # added
+      {:assent, "~> 0.2.7"} # oauth, openid
     ]
   end
 
