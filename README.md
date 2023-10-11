@@ -7,12 +7,10 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Deployment
 
-## Learn more
+What is used here is two herokuish buildpacks, as specified in `.buildpacks`.
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+The static buildpack assumes a `package.json` in `assets/`, and fails without it. So we put a placeholder package file there, even though we don't install anything.
+
+Also, the `compile` script is overridden, as the latest phoenix has a `mix assets.deploy` command, and the static buildpack assumes `mix phx.digest`.

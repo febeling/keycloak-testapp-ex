@@ -1,4 +1,5 @@
-# overrides static compile script
+# Override static compile script from `gigalixir-buildpack-phoenix-static`
+# (https://github.com/gigalixir/gigalixir-buildpack-phoenix-static/blob/main/compile)
 cd $phoenix_dir
 # npm --prefix ./assets run build
 mix assets.deploy
