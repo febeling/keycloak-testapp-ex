@@ -9,6 +9,8 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## Deployment
 
+Following the instructions in this gist, generally: https://gist.github.com/col/a509ee4b73cecb347c97 with the adaptations as follows.
+
 What is used here is two herokuish buildpacks, as specified in `.buildpacks`.
 
 There were two problems, resulting from the changes in the most recent Phoenix app structure (probably since 1.7), which don't work with the assumptions the static buildpack makes. (1.7 introduces an `esbuild` where it was `brunch` before, and it assumes `mix assets.deploy` to be used for building assets, which didn't exist by default before.)
