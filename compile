@@ -1,3 +1,4 @@
+# overrides static compile script
 cd $phoenix_dir
 # npm --prefix ./assets run build
 mix assets.deploy
