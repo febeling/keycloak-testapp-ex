@@ -1,0 +1,6 @@
+{
+  "name": "keycloak_testapp_ex",
+  "version": "0.0.1",
+  "description": "placeholder package.json to pacify static buildpack",
+  "main": "js/app.js"
+}
