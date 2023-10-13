@@ -52,7 +52,8 @@ defmodule KeycloakTestappEx.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       # added
-      {:ueberauth, "~> 0.10"}
+      {:ueberauth, "~> 0.10"},
+      {:ueberauth_keycloak_strategy, "~> 0.4"}
     ]
   end
 

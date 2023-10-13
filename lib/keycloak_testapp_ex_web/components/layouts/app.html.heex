@@ -9,7 +9,7 @@
     <div class="flex items-center gap-4 font-semibold leading-6 text-zinc-900">
       <.authenticated_user {assigns}/>
 
-      <.link href={~p"/sign_in"} method="POST" class="hover:text-zinc-700">
+      <.link href={~p"/sign_in"} class="hover:text-zinc-700">
         Sign in
       </.link>
       <.link href={~p"/sign_out"} method="DELETE" class="hover:text-zinc-700">

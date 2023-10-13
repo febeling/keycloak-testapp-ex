@@ -17,10 +17,17 @@ defmodule KeycloakTestappExWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/auth", KeycloakTestappExWeb do
+    pipe_through :browser
+
+    post "/:provider", SessionController, :create
+    post "/:provider/callback", SessionController, :callback
+  end
+
   scope "/", KeycloakTestappExWeb do
     pipe_through :browser
 
-    post "/sign_in", SessionController, :create
+    get "/sign_in", SessionController, :new
     delete "/sign_out", SessionController, :destroy
 
     get "/", PageController, :home
