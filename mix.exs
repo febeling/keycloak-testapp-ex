@@ -52,7 +52,7 @@ defmodule KeycloakTestappEx.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       # added
-      {:assent, "~> 0.2.7"} # oauth, openid
+      {:ueberauth, "~> 0.10"}
     ]
   end
 
