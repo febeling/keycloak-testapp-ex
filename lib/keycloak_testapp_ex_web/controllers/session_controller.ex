@@ -4,8 +4,6 @@ defmodule KeycloakTestappExWeb.SessionController do
 
   plug Ueberauth
 
-  alias Ueberauth.Strategy.Helpers
-
   def new(conn, _params) do
     render(conn, :new)
   end
