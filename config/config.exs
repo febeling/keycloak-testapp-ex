@@ -54,23 +54,29 @@ config :tailwind,
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  metadata: []
+  # metadata: [:request_id]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
 config :ueberauth, Ueberauth,
   providers: [
-    keycloak: {Ueberauth.Strategy.Keycloak, [default_scope: "read_user"]}
+    keycloak: {
+      Ueberauth.Strategy.Keycloak, [
+        default_scope: "profile openid email",
+        uid_field: :email
+      ]
+    }
   ]
 
 config :ueberauth, Ueberauth.Strategy.Keycloak.OAuth,
-  client_id: System.get_env("KEYCLOAK_CLIENT_ID"),
-  client_secret: System.get_env("KEYCLOAK_CLIENT_SECRET"),
-  redirect_uri: System.get_env("KEYCLOAK_REDIRECT_URI")
-  # authorize_url: "https://auth.nowtech.io/realms/app1/protocol/openid-connect/auth",   # optional
-  # token_url: "<http://localhost:8080>/realms/app1/protocol/openid-connect/token",      # optional
-  # userinfo_url: "<http://localhost:8080>/realms/app1/protocol/openid-connect/userinfo" # optional
+  client_id: "testapp-ex",
+  client_secret: System.get_env("KEYCLOAK_CLIENT_SECRET", "default-client-secret"),
+  redirect_uri: System.get_env("KEYCLOAK_REDIRECT_URI", "default-redirect-url"),
+  authorize_url: "https://auth.nowtech.io/realms/app1/protocol/openid-connect/auth",   # optional
+  token_url: "https://auth.nowtech.io/realms/app1/protocol/openid-connect/token",      # optional
+  userinfo_url: "https://auth.nowtech.io/realms/app1/protocol/openid-connect/userinfo" # optional
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

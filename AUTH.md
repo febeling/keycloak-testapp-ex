@@ -13,6 +13,12 @@ participant IdP
 group SessionController.create
 Browser -> Server : sign_in
 Server -> IdP : authorize
+note right
+With parameters:
+response_type=code,
+client_id, redirect_uri,
+scope, state
+end note
 IdP -> Server : consent_url=consent_page
 Server -> Browser : redirect(consent_page: "You consent?")
 end
@@ -34,6 +40,6 @@ Server -> Browser : redirect(notice="You're signed in")
 end
 @enduml
 
-https://plantuml.nowtech.io/svg/VL9TIyD047o_Nx7uqXQqFw1G1HMXA2f-FFWKhfTjSZJUXhrDfT8Vx-QhfYqA2IGxbvdPcPIMnJjVsY1mpVGLaKqWGIXm9K2h_H3WaGI4goYOdaEa0U9i60daTeCWkTwqnX2deCXRZbk8OhT00LwHDyXJWo65MiEK0_4MF1WjqcTZCgQgL3H6J-66WZ0LXR8uHgiKdGcukEmOO0RHPo7nmNG3XPH9vxQIdDX_ewdVXryu2X6391KNy_wvj1aEA7gX6J2cdj79U7Xo1cSVLFL4LsUJUakps-s63biR1mATar_sE-BFOx9JZgVxXllFS6nHBArRdoxQ0UCwYyHHYfEsRlPPBbhO-yj3tRhaFe9UEb6uTj9Ifx3SriE--tsLnrbdA4dp7moLZjqq1s2yk0MhFDOvNMJoV-OgvXtEwtn6Z4tLQig7Dl0V
+https://plantuml.nowtech.io/svg/VLBRIiD047tVhnZwqXPgFw1G1HL151KlY4zXtOp9Ojm9inCbqeztDabhh2Xa8SpPd5kcjYpU-Te6WMEcZuXi0Wb2XIy2zB8R0boHW70J1VC5H1eXpeQfG6dV4QJKGwyOuX8KkI-nXIYs1GfmX_oEl3GOSaWQfXw9z-2FqNb-Oqp1rDIAnkWfd50GfgfI5iTebM8m0GU70mEi8FeYP3wOOQ2GCkdSDb8I-q_i4x8lIZ6FNafGLVk6WXnNXZ7M529cqjQuTfJZ0eohF0R9l2Pdp3sZawnXhqXqLEiDpQXkTicIuDYIIumXVLEjj--rBN3aSPjajLEOZM-kOF94pPReQ39FOcQpsOmhw7F-41YSVBEV4R_ja_tckBxekFzitrRLitMlluCEm2oLdQNsvkEs0HvkBzDQIUaZwACJXPEJdZg7vpODjykrQtJ_PnOeMRTeOwLzDzq5c9sVWbKUwvm6cV_VkOfvX-lKpvInsoKrvKDV-1S0
 
 https://plantuml.com/en/sequence-diagram

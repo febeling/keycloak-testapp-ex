@@ -19,6 +19,7 @@ defmodule KeycloakTestappEx.MixProject do
   def application do
     [
       mod: {KeycloakTestappEx.Application, []},
+      # applications: [:ueberauth_keycloak_strategy],
       extra_applications: [:logger, :runtime_tools]
     ]
   end

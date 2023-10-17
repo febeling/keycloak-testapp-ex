@@ -45,6 +45,8 @@ defmodule KeycloakTestappExWeb do
       import Plug.Conn
       import KeycloakTestappExWeb.Gettext
 
+      alias KeycloakTestappExWeb.Plugs.Authenticate
+
       unquote(verified_routes())
     end
   end

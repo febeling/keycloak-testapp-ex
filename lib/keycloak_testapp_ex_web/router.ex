@@ -9,8 +9,7 @@ defmodule KeycloakTestappExWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
 
-    plug KeycloakTestappExWeb.Plugs.Debug
-    plug KeycloakTestappExWeb.Plugs.SessionInfo
+    plug KeycloakTestappExWeb.Plugs.AssignCurrentUser
   end
 
   pipeline :api do
@@ -20,7 +19,9 @@ defmodule KeycloakTestappExWeb.Router do
   scope "/auth", KeycloakTestappExWeb do
     pipe_through :browser
 
-    post "/:provider", SessionController, :create
+    get "/:provider", SessionController, :request
+    post "/:provider", SessionController, :request
+    get "/:provider/callback", SessionController, :callback
     post "/:provider/callback", SessionController, :callback
   end
 
@@ -34,11 +35,6 @@ defmodule KeycloakTestappExWeb.Router do
     resources "/posts", PostController
     resources "/users", UserController
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", KeycloakTestappExWeb do
-  #   pipe_through :api
-  # end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:keycloak_testapp_ex, :dev_routes) do

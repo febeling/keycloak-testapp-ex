@@ -10,39 +10,29 @@ defmodule KeycloakTestappExWeb.SessionController do
     render(conn, :new)
   end
 
-  @spec create(Plug.Conn.t(), any()) :: Plug.Conn.t()
-  def create(conn, _params) do
-    Logger.info("options: #{conn |> Helpers.options()}")
-    request_url = conn |> Helpers.request_url()
-    Logger.info("request_url: #{request_url}")
-    redirect(conn, external: request_url)
-  end
-
-  def callback(%{assigns: %{ueberauth_failure: fails}} = conn, params) do
-    Logger.warning("Successful login, failure: #{fails}")
-    Logger.debug("params: #{params}")
+  def callback(%{assigns: %{ueberauth_failure: fails}} = conn, _params) do
+    Logger.warning("Failed login, failure: #{fails}")
 
     conn
     |> put_flash(:error, "Failed to authenticate.")
     |> redirect(to: "/")
   end
 
-  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, params) do
-    Logger.info("Successful login, auth data: #{auth}")
-    Logger.info("params: #{params}")
+  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
+    Logger.info("Successful login, auth data successfully matched")
 
     conn
     |> put_flash(:info, "Successfully authenticated.")
-    |> put_session(:current_user, auth)
+    |> put_session(:current_user, auth.info.email)
     |> configure_session(renew: true)
     |> redirect(to: "/")
   end
 
   @spec destroy(Plug.Conn.t(), any()) :: Plug.Conn.t()
   def destroy(conn, _params) do
-    if get_session(conn, :user_email) != nil do
+    if get_session(conn, :current_user) != nil do
       conn
-      |> delete_session(:user_email)
+      |> delete_session(:current_user)
       |> put_flash(:info, "Logged out.")
       |> redirect(to: ~p"/users")
     else

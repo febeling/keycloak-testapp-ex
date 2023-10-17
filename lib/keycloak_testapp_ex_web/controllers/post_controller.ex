@@ -4,6 +4,8 @@ defmodule KeycloakTestappExWeb.PostController do
   alias KeycloakTestappEx.Blog
   alias KeycloakTestappEx.Blog.Post
 
+  plug Authenticate when action not in [:show, :index]
+
   def index(conn, _params) do
     posts = Blog.list_posts()
     render(conn, :index, posts: posts)

@@ -18,3 +18,5 @@ There were two problems, resulting from the changes in the most recent Phoenix a
 The buildpack assumes a `package.json` in `assets/`, and fails without it. So we put a placeholder package file there, even though we don't install anything.
 
 Also, the latest phoenix has a `mix assets.deploy` command, and the static buildpack assumes `mix phx.digest`. This is solved by overriding the `compile` script is overridden (placed at `$PROJECT_ROOT/compile`).
+
+[ default_scope: "user", client_id: :client_id1, client_secret: :client_secret2, request_path: "authorize_url", callback_path: "callback-paht-1" ]
